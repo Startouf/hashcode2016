@@ -30,4 +30,46 @@ public class Drone implements IDrone {
 		this.posY = posY;
 	}
 
+	@Override
+	public boolean isAtWarehouse() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isAtOrder() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public Destination getWarehouse() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Order getOrder() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Destination getClosestWarehouseThatNeedsEmptyDrones() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void go(Destination w) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void go(Order w) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

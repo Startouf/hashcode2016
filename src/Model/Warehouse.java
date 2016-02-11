@@ -2,10 +2,11 @@ package Model;
 
 import java.util.ArrayList;
 
-public class Warehouse {
+import drone.IDrone;
+import warehouse.IMarket;
 
-	private int posX = -1;
-	private int posY = -1;
+public class Warehouse extends Destination implements IMarket {
+
 	private ArrayList<Product> products = new ArrayList<Product>();
 
 	public Warehouse(int posX, int posY, ArrayList<Product> products) {
@@ -14,28 +15,18 @@ public class Warehouse {
 		setProducts(products);
 	}
 
-	public int getPosX() {
-		return posX;
-	}
-
-	public void setPosX(int posX) {
-		this.posX = posX;
-	}
-
-	public int getPosY() {
-		return posY;
-	}
-
-	public void setPosY(int posY) {
-		this.posY = posY;
-	}
-
 	public ArrayList<Product> getProducts() {
 		return products;
 	}
 
 	public void setProducts(ArrayList<Product> products) {
 		this.products = products;
+	}
+
+	@Override
+	public void decideAndTransferProductsForDrone(IDrone d) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

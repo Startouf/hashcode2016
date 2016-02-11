@@ -7,9 +7,9 @@ public class Order {
 	private int posX = -1;
 	private int posY = -1;
 	private ArrayList<Product> products = new ArrayList<Product>();
-	private Warehouse warehouse;
+	private Destination warehouse;
 
-	public Order(int posX, int posY, ArrayList<Product> products, Warehouse warehouse) {
+	public Order(int posX, int posY, ArrayList<Product> products, Destination warehouse) {
 		setPosX(posX);
 		setPosY(posY);
 		setProducts(products);
@@ -40,11 +40,11 @@ public class Order {
 		this.products = products;
 	}
 
-	public Warehouse getWarehouse() {
+	public Destination getWarehouse() {
 		return warehouse;
 	}
 
-	public void setWarehouse(Warehouse warehouse) {
+	public void setWarehouse(Destination warehouse) {
 		this.warehouse = warehouse;
 	}
 
