@@ -1,9 +1,7 @@
 package Model;
 
 import java.util.ArrayList;
-<<<<<<< HEAD
 import java.util.HashMap;
-=======
 
 import drone.IDrone;
 
