@@ -16,11 +16,11 @@ public class Parser {
 			File file = new File(path);
 			Scanner scanner = new Scanner(file);
 			int amountOfLines = 0;
+			int amountOfDrones = -1;
 			while (scanner.hasNextLine()) {
 				String[] line = scanner.nextLine().split("\\s+");
 				int amountOfWarehouses = -1;
 				int amountOfOrders = -1;
-				int amountOfDrones = -1;
 
 				if (amountOfLines == 0) {
 					if (line.length != 5) {
@@ -48,7 +48,7 @@ public class Parser {
 						int posY = Integer.parseInt(warehousePosition[1]);
 						if (i == 0) {
 							//Parse Drones with known Warehouse 0 Position
-							for (i = 0; i < amountOfDrones; i++) {
+							for (int a = 0; a < amountOfDrones; a++) {
 								Environment.DRONES.add(new Drone(posX,posY));
 							}
 						}
