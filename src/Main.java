@@ -10,13 +10,14 @@ public class Main {
 		try {
 			URL path = Main.class.getResource("input.txt");
 			File f = new File(path.getFile());
-			BufferedReader reader = new BufferedReader(new FileReader(f));
-			String str;
+			final BufferedReader reader = new BufferedReader(new FileReader(f));
+			 String str;
 			while ((str = reader.readLine()) != null) {
 				// Parse input
 				System.out.println(str);
 			}
 			System.out.println(str);
+			reader.close();
 		}
 		catch (IOException e) {
 		}
