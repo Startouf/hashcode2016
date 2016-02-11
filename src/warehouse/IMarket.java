@@ -5,10 +5,10 @@ import drone.IDrone;
 public interface IMarket {
 
 	/**
-	 * Given a drone, perform a merchandise exchange with another warehouse, 
-	 * depending on what that other warehouse needs
+	 * Perform Merchandise exchange with another warehouse, 
+	 * depending on what that other warehouse needs and available drones
 	 * @param d drone
 	 */
-	void decideAndTransferProductsForDrone(IDrone d);
+	void tradeAllYouCan();
 
 }

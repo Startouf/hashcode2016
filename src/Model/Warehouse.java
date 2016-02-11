@@ -6,7 +6,7 @@ import java.util.HashMap;
 import drone.IDrone;
 import warehouse.IMarket;
 
-public class Warehouse extends Destination implements IMarket {
+public class Warehouse extends Destination implements IMarket, IWarehouse {
 
 	private int posX = -1;
 	private int posY = -1;
@@ -40,7 +40,13 @@ public class Warehouse extends Destination implements IMarket {
 	}
 
 	@Override
-	public void decideAndTransferProductsForDrone(IDrone d) {
+	public void tradeAllYouCan() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void fillOrdersWithAvailableDrones() {
 		// TODO Auto-generated method stub
 		
 	}

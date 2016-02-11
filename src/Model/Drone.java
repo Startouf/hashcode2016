@@ -43,7 +43,7 @@ public class Drone implements IDrone {
 	}
 
 	@Override
-	public Destination getWarehouse() {
+	public Warehouse getWarehouse() {
 		// TODO Auto-generated method stub
 		return null;
 	}
