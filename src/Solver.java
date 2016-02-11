@@ -37,10 +37,7 @@ public class Solver {
 			w.fillOrdersWithAvailableDrones();
 		}
 		
-		// Post market updates for Warehouses (needed ?)
-		
-		
-		// Trade between Warehouses
+		// Trade between Warehouses and send out remaining drones
 		warehouses = Environment.getWarehousesWithDrones();
 		for(Warehouse w : warehouses){
 			w.tradeAllYouCan();
@@ -48,8 +45,6 @@ public class Solver {
 				DroneDecision.decideAndSendDroneToWarehouse(d);
 			}
 		}
-		
-		
 		
 		// Send drones that are currently at Orders
 		ArrayList<IDrone> freeDrones = Environment.getAllFreeDrones();
@@ -67,6 +62,7 @@ public class Solver {
 			// Update products received
 			// Update canFillOrder
 			// Update needsDrones
+			w.update();
 		}
 	}
 

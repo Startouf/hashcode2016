@@ -20,7 +20,7 @@ public class DroneDecision {
 				w.notifyIncomingDrone(d);
 			} else{
 				// Else if there is nothing to do : wait !!
-				d.wait();
+				d.waitTurn();
 			}
 		}
 		

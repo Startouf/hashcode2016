@@ -10,7 +10,7 @@ public interface IDrone {
 	public boolean isAtOrder();
 	public Warehouse getWarehouse();
 	public Order getOrder();
-	public Destination getClosestWarehouseThatNeedsEmptyDrones();
+	public Warehouse getClosestWarehouseThatNeedsEmptyDrones();
 	
 	/**
 	 * Set a drone to go to the destination
@@ -30,5 +30,13 @@ public interface IDrone {
 	 * OR at a warehouse but cannot fill any order, then needs to trade !
 	 */
 	public void decideAndGoSomewhere();
+	
+	/**
+	 * 
+	 * @return closest Warehouse that has products to transfer to other warehouse
+	 */
+	public Warehouse getClosestWarehouseThatCanTrade();
+	
+	public void waitTurn();
 
 }
