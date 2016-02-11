@@ -1,19 +1,27 @@
 package drone;
 
-import Model.Order;
-import warehouse.IMarket;
+import Model.Warehouse;
 
 public class DroneDecision {
 	
-	public void decideAndSendDroneToWarehouse(IDrone d){
+	public static void decideAndSendDroneToWarehouse(IDrone d){
 		
-		if (d.isAtWarehouse()){
-			IMarket w = (IMarket) d.getWarehouse();
-			w.decideAndTransferProductsForDrone(d);
-			
-		} else{
-			Order o = d.getOrder();
-			d.go(d.getClosestWarehouseThatNeedsEmptyDrones());
+		// First try to go to a closest warehouse that needs drones to deliver orders
+		Warehouse w = d.getClosestWarehouseThatNeedsEmptyDrones();
+		if(w != null){
+			d.go(w);
+			w.notifyIncomingDrone(d);
+		}
+		// If all orders filled, go to closest Warehouse that can trade
+		else{
+			w = d.getClosestWarehouseThatCanTrade();
+			if(w != null){
+				d.go(w);
+				w.notifyIncomingDrone(d);
+			} else{
+				// Else if there is nothing to do : wait !!
+				d.wait();
+			}
 		}
 		
 	}
