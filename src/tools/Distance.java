@@ -40,4 +40,8 @@ public class Distance {
 		return minDest;
 	}
 
+	public static int calculateDistance(int posX1, int posY1, int posX2, int posY2) {
+		return (int) Math.ceil(Math.sqrt(Math.pow(Math.abs(posX1 - posX2), 2) + Math.pow(Math.abs(posY1 - posY2), 2)));
+	}
+
 }

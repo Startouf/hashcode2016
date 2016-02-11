@@ -5,6 +5,7 @@ import java.util.Comparator;
 import Model.Environment;
 import Model.Order;
 import Model.Warehouse;
+import tools.Distance;
 
 public class Setup {
 
@@ -13,7 +14,7 @@ public class Setup {
 			Warehouse nearestWarehouse = null;
 			int distanceToNearestWarehouse = Integer.MAX_VALUE;
 			for (Warehouse warehouse : warehouses) {
-				int distance = calculateDistance(warehouse.getPosX(), warehouse.getPosY(), order.getPosX(),
+				int distance = Distance.calculateDistance(warehouse.getPosX(), warehouse.getPosY(), order.getPosX(),
 						order.getPosY());
 				if (distance < distanceToNearestWarehouse) {
 					nearestWarehouse = warehouse;
@@ -29,14 +30,10 @@ public class Setup {
 		}
 	}
 
-	public static int calculateDistance(int posX1, int posY1, int posX2, int posY2) {
-		return (int) Math.ceil(Math.sqrt(Math.pow(Math.abs(posX1 - posX2), 2) + Math.pow(Math.abs(posY1 - posY2), 2)));
-	}
-
 	public static void sortOrders(Warehouse warehouse) {
 		for (Order order : warehouse.getOrders()) {
 			order.setRating(
-					calculateDistance(order.getPosX(), order.getPosY(), warehouse.getPosX(), warehouse.getPosY())
+					Distance.calculateDistance(order.getPosX(), order.getPosY(), warehouse.getPosX(), warehouse.getPosY())
 							* order.getTotalWeight() / Environment.PAYLOAD);
 		}
 
