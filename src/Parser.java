@@ -2,6 +2,7 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import Model.Drone;
 import Model.Environment;
 import Model.Order;
 import Model.Warehouse;
@@ -19,6 +20,7 @@ public class Parser {
 				String[] line = scanner.nextLine().split("\\s+");
 				int amountOfWarehouses = -1;
 				int amountOfOrders = -1;
+				int amountOfDrones = -1;
 
 				if (amountOfLines == 0) {
 					if (line.length != 5) {
@@ -26,7 +28,7 @@ public class Parser {
 					} else {
 						Environment.ROWS = Integer.parseInt(line[0]);
 						Environment.COLUMNS = Integer.parseInt(line[1]);
-						// ToDo: Parse Drones
+						amountOfDrones = Integer.parseInt(line[2]);
 						Environment.TURNS = Integer.parseInt(line[3]);
 						Environment.PAYLOAD = Integer.parseInt(line[4]);
 					}
@@ -44,6 +46,12 @@ public class Parser {
 						String[] warehousePosition = scanner.nextLine().split("\\s+");
 						int posX = Integer.parseInt(warehousePosition[0]);
 						int posY = Integer.parseInt(warehousePosition[1]);
+						if (i == 0) {
+							//Parse Drones with known Warehouse 0 Position
+							for (i = 0; i < amountOfDrones; i++) {
+								Environment.DRONES.add(new Drone(posX,posY));
+							}
+						}
 						String[] warehouseProducts = scanner.nextLine().split("\\s+");
 						HashMap<Integer, Integer> products = new HashMap<Integer, Integer>();
 						int id = 0;
