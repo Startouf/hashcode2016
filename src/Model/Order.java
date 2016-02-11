@@ -1,6 +1,5 @@
 package Model;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Order {
@@ -11,24 +10,12 @@ public class Order {
 	private int totalWeight = -1;
 	private HashMap<Integer, Integer> products = new HashMap<Integer, Integer>();
 	private int rating = Integer.MAX_VALUE;
-	
-	/* Code for parsin
-	 * totalWeight += product.getWeight();
-				int amountOfProducts = 0;
-				if (products.containsKey(product.getId())) {
-					amountOfProducts = products.get(product.getId());
-				}
-				products.put(product.getId(), amountOfProducts + 1);
-	 * 
-	 * 
-	 */
 
-	public Order(int posX, int posY, int totalWeight, HashMap<Integer,Integer> products, Warehouse warehouse) {
+	public Order(int posX, int posY, int totalWeight, HashMap<Integer, Integer> products) {
 		setPosX(posX);
 		setPosY(posY);
 		setTotalWeight(totalWeight);
 		setProducts(products);
-		setWarehouse(warehouse);
 	}
 
 	public int getPosX() {
