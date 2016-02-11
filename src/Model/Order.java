@@ -7,11 +7,13 @@ public class Order {
 	private int posX = -1;
 	private int posY = -1;
 	private ArrayList<Product> products = new ArrayList<Product>();
+	private Warehouse warehouse;
 
-	public Order(int posX, int posY, ArrayList<Product> products) {
+	public Order(int posX, int posY, ArrayList<Product> products, Warehouse warehouse) {
 		setPosX(posX);
 		setPosY(posY);
 		setProducts(products);
+		setWarehouse(warehouse);
 	}
 
 	public int getPosX() {
@@ -36,6 +38,14 @@ public class Order {
 
 	public void setProducts(ArrayList<Product> products) {
 		this.products = products;
+	}
+
+	public Warehouse getWarehouse() {
+		return warehouse;
+	}
+
+	public void setWarehouse(Warehouse warehouse) {
+		this.warehouse = warehouse;
 	}
 
 }
