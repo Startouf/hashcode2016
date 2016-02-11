@@ -1,9 +1,13 @@
 package Model;
 
-public class Drone {
+import drone.IDrone;
+
+public class Drone implements IDrone {
 
 	private int posX = -1;
 	private int posY = -1;
+	private boolean doingSomething = false;
+	private int turnsImmobilized = 0;
 
 	public Drone(int posX, int posY) {
 		this.setPosX(posX);
