@@ -10,6 +10,7 @@ public class Order {
 	private Warehouse warehouse;
 	private int totalWeight = -1;
 	private HashMap<Integer, Integer> products = new HashMap<Integer, Integer>();
+	private int rating = Integer.MAX_VALUE;
 	
 	/* Code for parsin
 	 * totalWeight += product.getWeight();
@@ -68,5 +69,13 @@ public class Order {
 
 	public void setProducts(HashMap<Integer, Integer> products) {
 		this.products = products;
+	}
+
+	public int getRating() {
+		return rating;
+	}
+
+	public void setRating(int rating) {
+		this.rating = rating;
 	}
 }
