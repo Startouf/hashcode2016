@@ -3,7 +3,10 @@ package Model;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Warehouse {
+import drone.IDrone;
+import warehouse.IMarket;
+
+public class Warehouse extends Destination implements IMarket {
 
 	private int posX = -1;
 	private int posY = -1;
@@ -14,22 +17,6 @@ public class Warehouse {
 		setPosX(posX);
 		setPosY(posY);
 		setProducts(products);
-	}
-
-	public int getPosX() {
-		return posX;
-	}
-
-	public void setPosX(int posX) {
-		this.posX = posX;
-	}
-
-	public int getPosY() {
-		return posY;
-	}
-
-	public void setPosY(int posY) {
-		this.posY = posY;
 	}
 
 	public HashMap<Integer, Integer> getProducts() {
@@ -50,6 +37,12 @@ public class Warehouse {
 	
 	public void addOrder(Order order) {
 		orders.add(order);
+	}
+
+	@Override
+	public void decideAndTransferProductsForDrone(IDrone d) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
