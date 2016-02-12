@@ -26,7 +26,7 @@ public class Distance {
 	 * @param dst
 	 * @return
 	 */
-	public static Destination getShortestDestination(Destination start, List<Destination> dst){
+	public static Destination getShortestDestination(Destination start, List<? extends Destination> dst){
 		double minCost = Double.MAX_VALUE;
 		Destination minDest = null;
 		double currentCost;
@@ -38,6 +38,10 @@ public class Distance {
 			}
 		}
 		return minDest;
+	}
+	
+	public static int calculateDistance(Destination start, Destination end){
+		return calculateDistance(start.getPosX(), start.getPosY(), end.getPosX(), end.getPosY());
 	}
 
 	public static int calculateDistance(int posX1, int posY1, int posX2, int posY2) {

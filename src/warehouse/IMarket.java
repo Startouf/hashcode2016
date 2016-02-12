@@ -1,8 +1,16 @@
 package warehouse;
 
-import drone.IDrone;
+import java.util.List;
+
+import tools.ProductBulk;
 
 public interface IMarket {
+	
+	/**
+	 * 
+	 * @return a list of lists of product bulks needed to fill orders
+	 */
+	List<IMarketOffer> postMarketOffers();
 
 	/**
 	 * Perform Merchandise exchange with another warehouse, 

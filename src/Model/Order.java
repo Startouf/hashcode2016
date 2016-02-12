@@ -2,36 +2,19 @@ package Model;
 
 import java.util.HashMap;
 
-public class Order {
+import drone.IDrone;
+
+public class Order extends Destination implements Comparable<Order>{
 
 	private int posX = -1;
 	private int posY = -1;
 	private Warehouse warehouse;
-	private int totalWeight = -1;
+	
 	private HashMap<Integer, Integer> products = new HashMap<Integer, Integer>();
 	private int rating = Integer.MAX_VALUE;
 
-	public Order(int posX, int posY, int totalWeight, HashMap<Integer, Integer> products) {
-		setPosX(posX);
-		setPosY(posY);
-		setTotalWeight(totalWeight);
-		setProducts(products);
-	}
-
-	public int getPosX() {
-		return posX;
-	}
-
-	public void setPosX(int posX) {
-		this.posX = posX;
-	}
-
-	public int getPosY() {
-		return posY;
-	}
-
-	public void setPosY(int posY) {
-		this.posY = posY;
+	public Order(int posX, int posY,int totalWeight, HashMap<Integer, Integer> products) {
+		super(posX, posY, totalWeight, products);
 	}
 
 	public Warehouse getWarehouse() {
@@ -40,14 +23,6 @@ public class Order {
 
 	public void setWarehouse(Warehouse warehouse) {
 		this.warehouse = warehouse;
-	}
-
-	public int getTotalWeight() {
-		return totalWeight;
-	}
-
-	public void setTotalWeight(int totalWeight) {
-		this.totalWeight = totalWeight;
 	}
 
 	public HashMap<Integer, Integer> getProducts() {
@@ -64,5 +39,20 @@ public class Order {
 
 	public void setRating(int rating) {
 		this.rating = rating;
+	}
+
+	@Override
+	public int compareTo(Order o) {
+		return (this.rating - o.rating);
+	}
+
+	@Override
+	public void notifyIncomingDrone(IDrone d) {
+		
+	}
+
+	@Override
+	public void notifyLeavingDrone(IDrone d) {
+		
 	}
 }

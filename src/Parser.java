@@ -46,12 +46,6 @@ public class Parser {
 						String[] warehousePosition = scanner.nextLine().split("\\s+");
 						int posX = Integer.parseInt(warehousePosition[0]);
 						int posY = Integer.parseInt(warehousePosition[1]);
-						if (i == 0) {
-							//Parse Drones with known Warehouse 0 Position
-							for (int a = 0; a < amountOfDrones; a++) {
-								Environment.DRONES.add(new Drone(posX,posY));
-							}
-						}
 						String[] warehouseProducts = scanner.nextLine().split("\\s+");
 						HashMap<Integer, Integer> products = new HashMap<Integer, Integer>();
 						int id = 0;
@@ -59,7 +53,16 @@ public class Parser {
 							products.put(id, Integer.parseInt(product));
 							id++;
 						}
-						Environment.WAREHOUSES.add(new Warehouse(posX, posY, products));
+						Warehouse w = new Warehouse(posX, posY, products);
+						Environment.WAREHOUSES.add(w);
+						if (i == 0) {
+							//Parse Drones with known Warehouse 0 Position
+							for (int a = 0; a < amountOfDrones; a++) {
+								Drone d = new Drone(w);
+								Environment.DRONES.add(d);
+								w.addDrone(d);
+							}
+						}
 					}
 				} else {
 					amountOfOrders = Integer.parseInt(line[0]);

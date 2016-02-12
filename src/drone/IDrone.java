@@ -1,6 +1,7 @@
 package drone;
 
 import Model.Destination;
+import Model.IWarehouse;
 import Model.Order;
 import Model.Warehouse;
 
@@ -10,7 +11,7 @@ public interface IDrone {
 	public boolean isAtOrder();
 	public Warehouse getWarehouse();
 	public Order getOrder();
-	public Warehouse getClosestWarehouseThatNeedsEmptyDrones();
+	public IWarehouse getClosestWarehouseThatNeedsEmptyDrones();
 	
 	/**
 	 * Set a drone to go to the destination
@@ -18,18 +19,24 @@ public interface IDrone {
 	 * @param w
 	 */
 	public void go(Destination w);
-	public void go(Order w);
+	
+	public void loadAndGo(Destination w, ICargo c);
+	
+	/**
+	 * Unload the cargo at destination
+	 * @param c
+	 */
+	public void unload(ICargo c);
+	
+	/**
+	 * Unload all cargo
+	 */
+	public void unloadAll();
 	
 	/**
 	 * Perform turn, store in environment the warehouses which have received a new drone
 	 */
 	public void performTurn();
-	
-	/**
-	 * Drone decides : either at an order and need to go to closest warehouse
-	 * OR at a warehouse but cannot fill any order, then needs to trade !
-	 */
-	public void decideAndGoSomewhere();
 	
 	/**
 	 * 

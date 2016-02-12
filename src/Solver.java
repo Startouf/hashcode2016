@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 
+import Model.Drone;
 import Model.Environment;
 import Model.Warehouse;
 import drone.DroneDecision;
@@ -9,7 +10,7 @@ public class Solver {
 	
 	// TODO Setup the environment
 	
-	private ArrayList<IDrone> allDrones;
+	private ArrayList<Drone> allDrones;
 	private ArrayList<Warehouse> allWarehouses;
 	private int currentTurn = 0;
 	private int totalTurns;

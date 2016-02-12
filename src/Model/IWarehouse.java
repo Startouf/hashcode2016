@@ -1,6 +1,6 @@
 package Model;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import drone.IDrone;
 
@@ -15,7 +15,7 @@ public interface IWarehouse {
 	 * Returns list of drones currently without actions
 	 * @return
 	 */
-	public ArrayList<IDrone> getFreeDrones();
+	public List<IDrone> getFreeDrones();
 	
 	/**
 	 * Update Warehouses knowing drones have arrived
@@ -24,11 +24,13 @@ public interface IWarehouse {
 	 * * Update needsDrones
 	 */
 	public void update();
-	
+
 	/**
-	 * Knowing that a drone d is incoming, perform appropriate changes
-	 * (add to list of arriving drones, etc.)
+	 * Notifies that a drone is incoming
+	 * @param d
 	 */
 	public void notifyIncomingDrone(IDrone d);
+	
+	
 	
 }
