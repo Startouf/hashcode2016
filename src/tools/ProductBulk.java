@@ -6,7 +6,8 @@ public class ProductBulk implements Comparable<ProductBulk>{
 	public int productID;
 	public int quantity;
 	public final int productWeight;
-	ProductBulk(int x, int y) {
+	
+	public ProductBulk(int x, int y) {
 		this.productID=x;this.quantity=y;
 		this.productWeight = Environment.getWeight(x);
 		}

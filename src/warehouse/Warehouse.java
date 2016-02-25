@@ -1,4 +1,4 @@
-package Model;
+package warehouse;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -7,22 +7,27 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+import Model.Destination;
+import Model.Environment;
+import Model.Order;
+import drone.Drone;
 import drone.ICargo;
 import drone.IDrone;
 import tools.Fitting;
 import tools.ProductBulk;
-import warehouse.IMarket;
-import warehouse.MarketOffer;
 
 public class Warehouse extends Destination implements IMarket, IWarehouse {
 
-	private int posX = -1;
-	private int posY = -1;
+	private static int nextID = 0;
 	
+	private final int ID;
 	private ArrayList<Order> orders = new ArrayList<Order>();
 	private ArrayList<Order> ordersToFill;
 	private LinkedList<IDrone> freeDrones;
 	private ArrayList<IDrone> incomingDrones;
+	
+	private ArrayList<PurchaseOffer> buys = new ArrayList<PurchaseOffer>();
+	private ArrayList<SellOffer> sells = new ArrayList<SellOffer>();
 	
 	private boolean needDrones = true;
 	private boolean canTrade = false;
@@ -32,6 +37,8 @@ public class Warehouse extends Destination implements IMarket, IWarehouse {
 		setPosX(posX);
 		setPosY(posY);
 		setProducts(products);
+		this.ID = nextID;
+		nextID++;
 	}
 
 	public ArrayList<Order> getOrders() {
@@ -49,8 +56,11 @@ public class Warehouse extends Destination implements IMarket, IWarehouse {
 	}
 
 	@Override
-	public void tradeAllYouCan() {
-		// TODO Auto-generated method stub
+	public void tradeWith(Destination d, ArrayList<SellOffer> s) {
+		for(ICargo c : Fitting.createCargoesFrom(s)){
+			IDrone dr = getFreeDrone();
+			dr.loadAndGo(d, c);
+		};
 	}
 
 	@Override
@@ -68,10 +78,14 @@ public class Warehouse extends Destination implements IMarket, IWarehouse {
 			}
 		}
 	}
+	
+	private IDrone getFreeDrone(){
+		return freeDrones.get(0);
+	}
 
 	private void fillOrder(Order o) {
 		for(ICargo c : Fitting.createCargoesFrom(o.getProducts())){
-			IDrone d = freeDrones.get(0);
+			IDrone d = getFreeDrone();
 			d.loadAndGo((Destination)o, c);
 		};
 		
@@ -128,8 +142,10 @@ public class Warehouse extends Destination implements IMarket, IWarehouse {
 	}
 
 	@Override
-	public List<MarketOffer> postOffers() {
-		ArrayList<MarketOffer> offers = new ArrayList<MarketOffer>();
+	public List<IMarketOffer> postMarketOffers() {
+		ArrayList<PurchaseOffer> requests = new ArrayList<PurchaseOffer>();
+		ArrayList<SellOffer> offers = new ArrayList<SellOffer>();
+		
 		HashMap<Integer, Integer> delta = (HashMap<Integer, Integer>) this.products.clone(); 
 		
 		// Buy requests
@@ -140,10 +156,10 @@ public class Warehouse extends Destination implements IMarket, IWarehouse {
 				int needed = products.get(productID);
 				// If the warehouse doesn't have this product
 				if(ours<=0){
-					offers.add(new PurchaseOffer(this, new ProductBulk(productID, needed)))
+					requests.add(new PurchaseOffer(this, new ProductBulk(productID, needed)));
 				} else if (ours<needed){
 					delta.put(productID, -1);
-					offers.add(new PurchaseOffer(this, new ProductBulk(productID, needed-ours)))
+					requests.add(new PurchaseOffer(this, new ProductBulk(productID, needed-ours)));
 				} else {
 					delta.put(productID, ours-needed);
 				}
@@ -155,9 +171,17 @@ public class Warehouse extends Destination implements IMarket, IWarehouse {
 		for(Integer productID : delta.keySet()){
 			int ours = delta.get(productID);
 			if(ours > 0){
-				offers.add(new SellOffer(this, new ProductBulk(productID, ours)))
+				offers.add(new SellOffer(this, new ProductBulk(productID, ours)));
 			}
 		}
+		this.buys = requests;
+		this.sells = offers;
+		return 
+		return offers;
+	}
+	
+	public int getID(){
+		return this.ID;
 	}
 
 }

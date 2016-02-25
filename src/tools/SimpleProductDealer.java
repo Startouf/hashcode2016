@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 
+import warehouse.SellOffer;
+
 public class SimpleProductDealer implements ProductDealer {
 private ArrayList<ProductBulk> prods = new ArrayList<ProductBulk>();
 	
@@ -16,6 +18,20 @@ private ArrayList<ProductBulk> prods = new ArrayList<ProductBulk>();
 		Collections.sort(prods);
 	}
 	
+	public SimpleProductDealer(ArrayList<SellOffer> sellOffers) {
+		this(sellOffersToHash(sellOffers));
+	}
+
+	private static HashMap<Integer, Integer> sellOffersToHash(ArrayList<SellOffer> sellOffers) {
+		HashMap<Integer, Integer> products = new HashMap<Integer, Integer>();
+		for(SellOffer s : sellOffers){
+			int pID = s.getProducts().productID;
+			int qty = s.getProducts().quantity;
+			products.put(pID, products.getOrDefault(pID, 0)+qty);
+		}
+		return products;
+	}
+
 	/* (non-Javadoc)
 	 * @see tools.ProductDealer#dealBestProductBulk(int)
 	 */

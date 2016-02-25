@@ -4,8 +4,8 @@ import java.util.Comparator;
 
 import Model.Environment;
 import Model.Order;
-import Model.Warehouse;
 import tools.Distance;
+import warehouse.Warehouse;
 
 public class Setup {
 

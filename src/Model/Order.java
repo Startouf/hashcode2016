@@ -3,11 +3,13 @@ package Model;
 import java.util.HashMap;
 
 import drone.IDrone;
+import warehouse.Warehouse;
 
 public class Order extends Destination implements Comparable<Order>{
 
-	private int posX = -1;
-	private int posY = -1;
+	private static int nextID = 0;
+	
+	private final int ID;
 	private Warehouse warehouse;
 	
 	private HashMap<Integer, Integer> products = new HashMap<Integer, Integer>();
@@ -15,6 +17,8 @@ public class Order extends Destination implements Comparable<Order>{
 
 	public Order(int posX, int posY,int totalWeight, HashMap<Integer, Integer> products) {
 		super(posX, posY, totalWeight, products);
+		this.ID = nextID;
+		nextID++;
 	}
 
 	public Warehouse getWarehouse() {
@@ -45,14 +49,16 @@ public class Order extends Destination implements Comparable<Order>{
 	public int compareTo(Order o) {
 		return (this.rating - o.rating);
 	}
+	
+	public int getID(){
+		return this.ID;
+	}
 
 	@Override
 	public void notifyIncomingDrone(IDrone d) {
-		
 	}
 
 	@Override
 	public void notifyLeavingDrone(IDrone d) {
-		
 	}
 }

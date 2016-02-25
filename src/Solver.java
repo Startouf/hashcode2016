@@ -1,10 +1,10 @@
 import java.util.ArrayList;
 
-import Model.Drone;
 import Model.Environment;
-import Model.Warehouse;
+import drone.Drone;
 import drone.DroneDecision;
 import drone.IDrone;
+import warehouse.Warehouse;
 
 public class Solver {
 	

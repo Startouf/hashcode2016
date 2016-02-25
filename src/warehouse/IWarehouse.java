@@ -1,4 +1,4 @@
-package Model;
+package warehouse;
 
 import java.util.List;
 

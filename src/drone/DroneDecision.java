@@ -1,8 +1,8 @@
 package drone;
 
 import Model.Destination;
-import Model.IWarehouse;
-import Model.Warehouse;
+import warehouse.IWarehouse;
+import warehouse.Warehouse;
 
 public class DroneDecision {
 	

@@ -1,9 +1,9 @@
 package drone;
 
 import Model.Destination;
-import Model.IWarehouse;
 import Model.Order;
-import Model.Warehouse;
+import warehouse.IWarehouse;
+import warehouse.Warehouse;
 
 public interface IDrone {
 	

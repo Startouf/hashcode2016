@@ -5,7 +5,10 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Random;
 
+import drone.Drone;
 import drone.IDrone;
+import warehouse.IWarehouse;
+import warehouse.Warehouse;
 
 public class Environment {
 	public static int ROWS = -1;

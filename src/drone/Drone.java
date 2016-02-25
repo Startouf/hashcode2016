@@ -1,16 +1,21 @@
-package Model;
+package drone;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import drone.Cargo;
-import drone.ICargo;
-import drone.IDrone;
+import Model.Destination;
+import Model.Environment;
+import Model.Order;
 import tools.Distance;
 import tools.Todo;
+import warehouse.IWarehouse;
+import warehouse.Warehouse;
 
 public class Drone implements IDrone {
 
+	private static int nextID = 0;
+	
+	private final int ID;
 	private boolean doingSomething = false;
 	private int turnsImmobilized = 0;
 	private Destination currentDestination;
@@ -18,6 +23,8 @@ public class Drone implements IDrone {
 
 	public Drone(Destination d) {
 		this.currentDestination = d;
+		this.ID = nextID;
+		nextID++;
 	}
 
 	@Override
@@ -103,6 +110,10 @@ public class Drone implements IDrone {
 		this.turnsImmobilized++;
 		this.cargo = null;
 		
+	}
+	
+	public int getID(){
+		return this.ID;
 	}
 
 }

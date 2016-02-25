@@ -2,10 +2,10 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Scanner;
 
-import Model.Drone;
 import Model.Environment;
 import Model.Order;
-import Model.Warehouse;
+import drone.Drone;
+import warehouse.Warehouse;
 
 public class Parser {
 

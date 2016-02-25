@@ -2,21 +2,34 @@ package warehouse;
 
 import java.util.List;
 
-import tools.ProductBulk;
+import Model.Destination;
 
 public interface IMarket {
 	
 	/**
-	 * 
-	 * @return a list of lists of product bulks needed to fill orders
+	 * Post all possible market offers and returns list of available offers
 	 */
-	List<IMarketOffer> postMarketOffers();
+	public void postMarketOffers();
+	
+	/**
+	 * 
+	 * @return list of Purchase MarketOffer
+	 */
+	public List<IMarketOffer> getPostedBuys();
+	
+	/**
+	 * 
+	 * @return list of Sell MarketOffers
+	 */
+	public List<IMarketOffer> getPostedSells();
+	
+	
 
 	/**
 	 * Perform Merchandise exchange with another warehouse, 
-	 * depending on what that other warehouse needs and available drones
 	 * @param d drone
+	 * depending on what that other warehouse needs and available drones
 	 */
-	void tradeAllYouCan();
+	public void tradewith(Destination d, SellOffer ownDeal);
 
 }

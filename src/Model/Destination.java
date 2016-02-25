@@ -54,6 +54,8 @@ public abstract class Destination {
 		this.totalWeight = totalWeight;
 	}
 	
+	public abstract int getID();
+	
 	/**
 	 * Knowing that a drone d is incoming, perform appropriate changes
 	 * (add to list of arriving drones, etc.)
